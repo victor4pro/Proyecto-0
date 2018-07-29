@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DTMF sin uso de microcontrolador</title>
+		<link rel="stylesheet" href="style.css">
+		<style>
+			h1 {
+				color: #0f2a3f;
+				text-align: center;
+				font-weight: bold;
+			}
+			table {
+				border: 2px solid black;
+				width: 45%;
+				border-collapse: collapse;
+			}
+			th, td {
+				border: 1px solid black;
+				padding: 4px;
+				text-align: center;
+			}
+			th {
+				font-weight: bold;
+				background-color: lightblue;
+			}
+			
+
+		</style>
+	</head>
+	<body>
+		<h1>Domotica basada en DTMF sin uso de microcontrolador</h1>
+		<p>Podemos usar diferentes tipos de control en aplicaciones de comunicacion en sistemas domoticos, industriales entre otros. Los tipos que comunicacion electrica que usualmente se usan son con uso de conductor electrico o por medio del aire. Medios de transferencia electrica por aire podemos tener sistemas RF, wifi, bluetooth. Pero este proyecto esta pensado para ser realizado de modo cableado sin la utilizacion de un microcontrolador</p>
+		<img src="DTMF_1.jpg" alt="domo1" width="600" height="400">
+		<p></p>
+		<h2 id="mark">Materiales que se requieren para efectuar el proyecto</h2>
+		<table>
+			<tr>
+				<th>Componente</th>
+				<th>Cantidad</th>
+				<th>Descripcion</th>
+			</tr>
+			<tr>
+				<td>MT8870 DTMF</td>
+				<td>1</td>
+				<td>Decodificador que convierte las senales de frecuencia que salen del telefono a senales digitales</td>
+			</tr>
+			<tr>
+				<td>ULN2003A</td>
+				<td>1</td>
+				<td>Circuito integrado de compuertas NOT</td>
+			</tr>
+			<tr>
+				<td>Rele de 5V</td>
+				<td>3</td>
+				<td>Para conectar la carga de potencia a circuito electronico</td>
+			</tr><tr>
+				<td>Socate con enchufe o LEDS</td>
+				<td>3</td>
+				<td>Para simular la carga de corriente alterna</td>
+			</tr>
+			<tr>
+				<td>Cables varios de conexiones</td>
+				<td>----</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>ProtoBoard</td>
+				<td>2</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>Cable auxiliar jac</td>
+				<td>1</td>
+				<td>Para conectar la salida de audio del telefono celular y el circuito electronico</th>
+			</td>
+			<tr>
+				<td>Bateria de 9V</td>
+				<td>2</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Terminales tipo bloque</td>
+				<td>4</td>
+				<td>Para conexion de los reles</td>
+			</tr>
+			<tr>
+				<td>100k Resistor</td>
+				<td>2</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>330k Resistor</td>
+				<td>1</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>0.1 uF Capacitor</td>
+				<td>2</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>22 pF Capacitor</td>
+				<td>2</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>3.57 Mhz Cristal</td>
+				<td>1</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>Telefono Movil</td>
+				<td>1</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>Diodos Led</td>
+				<td>3</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>1k Resistor</td>
+				<td>6</td>
+				<td>----</td>
+			</tr>
+			<tr>
+				<td>7805</td>
+				<td>1</td>
+				<td>Regulador de tension</td>
+			</tr>
+		</table>
+		<p></p>
+			<p>Existen ciertas frecuencias que son usadas para crear un tono DTMF. Combinando o mezclando dos o mas frecuenciaas, se genera un tono DTMF. Las frecuencias que podemos obtener son dadas a continuacion:</p>
+		<img src="DTMF_0.png" alt="DTMF_0" width="450" height="410">
+		<p></p>
+		<p>En la figura anterior se pueden apreciar do grupos de diferentes frecuencias. Cuando se combinan una frecuencia alta y una frecuencia baja , el tono que se crea es llamado Tono Dual de Multiple Frecuencia. En este proyecto se plantea el control de dispositivos, con el presionar de el teclado del telefono movil. A continuacion un diagrama de funcionamiento: </p>
+		<p></p>
+		<img src="Diagram_0.png" alt="Diagram_0" width="800" height="350">
+		<p></p>
+		<p>Se conecta el telefono movil al decodificador mediante el cable auxiliar. Entonces la salida que se obtiene en el decodificador (MT8870) es la siguiente: </p>
+		<img src="output_decoder.png" alt="outpu_decoder" width="450" height="350">
+		<p>En el diagrama de circuito en Q1 LIGHT esta conectado, en Q2 FAN esta conectado y en Q3 TV esta conectado a traves del IC del controlador de rele. Hemos dejado Q4. Ahora cuando presionamos la tecla 1 en el teclado de marcacion del telefono movil, DTMF decodifica este tono y genera una salida digital dada en la tabla. Ahora De acuerdo con la salida dada en la tabla Q1 es ALTA y Q1 esta conectada con la luz asi que LUZ ENCENDIDA. Si queremos APAGAR la LUZ, debemos presionar la tecla numero 8. Porque en la salida de la tecla 8, Q1, Q2 y Q3 BAJA y Q4 son ALTAS y no hemos usado Q4. Entonces, no importa que Q4 sea ALTO o BAJO. Pero nuestra operacion se ha realizado porque Q1 esta BAJA en la salida de la clave 8 y el resto de los aparatos no se han visto afectados. Ahora queremos encender el VENTILADOR, asi que debemos presionar la tecla 2 porque al presionar la tecla 2, solo Q2 se activa y el resto de la salida permanece igual. Ahora si apagamos el VENTILADOR, entonces necesitamos presionar la tecla 8 nuevamente como antes para LUZ. Ahora si queremos TV, necesitamos presionar la tecla4 y para desactivarla necesitamos presionar 8 como antes. Ahora supongamos que queremos ENCENDER todos los aparatos, por lo que debemos presionar la tecla 7 (ver tabla) y apagar todas las teclas 8 (ver tabla).</p>
+
+		<p>Ahora si necesitamos encender LIGHT y FAN, necesitamos presionar key3 (ver tabla). Y ahora queremos EN TV, así que debemos presionar la tecla 7, no la tecla4. Porque debemos mantenernos encendiendo los aparatos anteriores. Ahora si queremos APAGAR solo la LUZ, entonces necesitamos presionar la tecla6. Debido a que debemos volver a mantener, encienda los dispositivos anteriores, excepto LUZ. Asi, de esta forma podemos controlar cada dispositivo de acuerdo a la tabla de salida del decodificador</p>
+		<p>En el circuito a continuacion se muestra el uso del decodificador llamado MT8890 IC el cual convierte el tono en una salida de digital de cuatro bits. LIGHT, FAN and TV estan conectadas a las salidas Q1, Q2 y Q3 a travez del dispositivo ULN2003. 3 reles de 5V son usados ara controlar LIGHT, FAN y TV.</p>
+		<img src="diagrama_final.jpg" alt="diagrama_final" width="1100" height="600">
+		<a href="https://www.youtube.com/watch?v=QRRsjXVbecI">link</a>
+		<p></p>
+		<a href="index.html">volver al inicio</a>
+	</body>
+</html>

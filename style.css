@@ -1,0 +1,24 @@
+	p {
+		font-family: Arial, sans-serif;
+		font-size: 15.5px;
+	}
+
+	h2 {
+		font-weight: bold;
+		font-size: 30px;
+		color: darkblue;
+		text-align: center;
+	}
+
+	#color2 {
+		font-weight: bold;
+		font-size: 21px;
+		color:red;
+			}
+	#Puntos {
+		border: 4px dotted black;
+	}
+	#mark {
+		font-size: 25px;
+		font-weight: bold;
+	}
